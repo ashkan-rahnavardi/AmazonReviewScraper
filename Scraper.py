@@ -38,8 +38,8 @@ class Reviews:
         :param reviews: html review
         """
         for review in reviews:
-            title = review.find('a[data-hook=review-title]', first=True).text
-            rating = review.find('i[data-hook=review-star-rating] span', first=True).text
+            title = review.find('a[data-hook=review-title]', first=True).text[19:]  # first 19 char are rating
+            rating = int(review.find('i[data-hook=review-star-rating] span', first=True).text[:1])
             body = review.find('span[data-hook=review-body] span', first=True).text.replace('\n', '').strip()
 
             data = {
